@@ -1,0 +1,29 @@
+.custom-page-header
+  h4 Sign up
+
+= form_for resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal"} do |f|
+  = devise_error_messages!
+
+  .form-group
+    = f.label :first_name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :first_name, class: "form-control"
+
+  .form-group
+    = f.label :last_name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :last_name, class: "form-control"
+
+  .form-group
+    = f.label :email, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.email_field :email, class: "form-control"
+
+  .form-group
+    = f.label :password, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.email_field :password, autocomplete: false, class: "form-control"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit "Sign up", class: "btn btn-primary"

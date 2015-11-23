@@ -1,0 +1,34 @@
+.wine-header {
+  margin-bottom: 25px;
+  .add-wine-btn {
+    text-align: right;
+  }
+  strong {
+    font-size: 1.12em;
+  }
+
+}
+
+.wine-catalog {
+  table.table {
+    td { vertical-align: middle }
+  }
+}
+
+form {
+  .edit-wine {
+    .col-md-2 { width: 11% }
+  }
+
+  .add-wine {
+    .col-md-2 { width: 8.5% }
+  }
+}
+
+
+// Media queries
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) {
+  .wine-header {
+  }
+}
