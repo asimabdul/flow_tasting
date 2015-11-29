@@ -41,21 +41,21 @@
       #package-wine-fields.form-group
         = label_tag "Edit Wines", nil, class: "col-sm-2 control-label"
         .col-sm-10.wine-controls
-          .wine-entry
-            .row
-              .col-sm-6
-                = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.first.id), class: "form-control"
-              .col-sm-2
-                = link_to "#", class: "btn btn-danger package-wine-remove-btn" do
-                  i.fa.fa-minus
-          - @wine_list[1..-1].each do |wine|
+          - @wine_list[0..-2].each do |wine|
             .wine-entry
               .row
                 .col-sm-6
                   = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, wine.id), class: "form-control"
                 .col-sm-2
-                  = link_to "#", class: "btn btn-default package-wine-add-btn" do
-                    i.fa.fa-plus
+                  = link_to "#", class: "btn btn-danger package-wine-remove-btn" do
+                    i.fa.fa-minus
+          .wine-entry
+            .row
+              .col-sm-6
+                = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.last.id), class: "form-control"
+              .col-sm-2
+                = link_to "#", class: "btn btn-default package-wine-add-btn" do
+                  i.fa.fa-plus
 
 
   .form-group
