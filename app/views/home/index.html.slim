@@ -5,7 +5,5 @@
   p Welcome to Flow Tasting, a community for and by wine lovers.
   - if current_user.nil?
     .row.home-actions
-      .col-md-2
-        = link_to "Sign up", new_user_registration_url, class: "btn btn-lg btn-primary"
       .col-md-1
-        = link_to "Log in", new_user_session_url, class: "btn btn-lg btn-default"
+        = link_to "Log in", new_user_session_url, class: "btn btn-lg btn-primary"

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123220614) do
+ActiveRecord::Schema.define(version: 20151128190927) do
+
+  create_table "tasting_packages", force: :cascade do |t|
+    t.string   "name",       limit: 255,                         null: false
+    t.decimal  "price",                  precision: 8, scale: 2, null: false
+    t.string   "state",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255,                 null: false
@@ -34,16 +42,30 @@ ActiveRecord::Schema.define(version: 20151123220614) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "wine_packages", force: :cascade do |t|
+    t.integer  "wine_id",            limit: 4
+    t.integer  "tasting_package_id", limit: 4
+    t.string   "wine_tasting_code",  limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wine_packages", ["tasting_package_id"], name: "fk_rails_f76832511a", using: :btree
+  add_index "wine_packages", ["wine_id", "tasting_package_id", "wine_tasting_code"], name: "uniq_package", unique: true, using: :btree
+
   create_table "wines", force: :cascade do |t|
-    t.string   "name",        limit: 255,   null: false
+    t.string   "name",        limit: 255,                           null: false
     t.string   "region",      limit: 255
     t.string   "wine_type",   limit: 255
     t.text     "description", limit: 65535
     t.text     "fun_facts",   limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "price",                     precision: 8, scale: 2
   end
 
   add_index "wines", ["name"], name: "index_wines_on_name", using: :btree
 
+  add_foreign_key "wine_packages", "tasting_packages"
+  add_foreign_key "wine_packages", "wines"
 end

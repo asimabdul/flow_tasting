@@ -1,0 +1,65 @@
+.custom-page-header
+  h4 Edit tasting package
+
+= form_for(@package, url: admin_tasting_package_url(@package.id), method: :put, html: {class: "form-horizontal"}) do |f|
+  
+  .form-group
+    = f.label :name, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :name, class: "form-control", required: true
+
+  .form-group
+    = f.label :price, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :price, class: "form-control", required: true
+
+  - if @wine_list.empty?
+    #package-wine-fields.form-group
+      = label_tag "Add Wines", nil, class: "col-sm-2 control-label"
+      .col-sm-10.wine-controls
+        .wine-entry
+          .row
+            .col-sm-6
+              = select_tag "wine_selection[]", options_for_select(Wine.wine_selections), class: "form-control"
+            .col-sm-2
+              = link_to "#", class: "btn btn-default package-wine-add-btn" do
+                i.fa.fa-plus
+
+  - else
+    - if @wine_list.size == 1
+      #package-wine-fields.form-group
+        = label_tag "Edit Wines", nil, class: "col-sm-2 control-label"
+        .col-sm-10.wine-controls
+          .wine-entry
+            .row
+              .col-sm-6
+                = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.first.id), class: "form-control"
+              .col-sm-2
+                = link_to "#", class: "btn btn-default package-wine-add-btn" do
+                  i.fa.fa-plus
+    - else
+      #package-wine-fields.form-group
+        = label_tag "Edit Wines", nil, class: "col-sm-2 control-label"
+        .col-sm-10.wine-controls
+          .wine-entry
+            .row
+              .col-sm-6
+                = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.first.id), class: "form-control"
+              .col-sm-2
+                = link_to "#", class: "btn btn-danger package-wine-remove-btn" do
+                  i.fa.fa-minus
+          - @wine_list[1..-1].each do |wine|
+            .wine-entry
+              .row
+                .col-sm-6
+                  = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, wine.id), class: "form-control"
+                .col-sm-2
+                  = link_to "#", class: "btn btn-default package-wine-add-btn" do
+                    i.fa.fa-plus
+
+
+  .form-group
+    .col-md-offset-2.col-md-2
+      = f.submit "Save changes", class: "btn btn-primary"
+    .col-md-1
+      = link_to "Cancel", admin_tasting_packages_url, class: "btn btn-default"

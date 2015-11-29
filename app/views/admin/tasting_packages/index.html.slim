@@ -1,0 +1,38 @@
+.wine-header
+  .row
+    .col-md-4.col-xs-4
+      strong Tasting Packages
+    .col-md-4.col-md-offset-4.col-xs-4.col-xs-offset-4.add-wine-btn
+      = link_to new_admin_tasting_package_url, class: "btn btn-default" do
+        i.fa.fa-plus
+        | Add
+- if @packages.empty?
+ span No tasting packages. Use the Add button to create packages.
+
+- else
+  .table-container
+    table.table
+      thead
+        tr
+          th #
+          th Name
+          th Price
+          th
+          th
+
+      tbody
+        - @packages.each do |package|
+          tr
+            td #{package.id}
+            td 
+              = link_to "#{package.name}", admin_tasting_package_url(package.id)
+            #{package.name}
+            td #{number_to_currency(package.price)}
+            td
+              = link_to edit_admin_tasting_package_url(package.id), class: "btn btn-default" do
+                i.fa.fa-pencil
+                | Edit
+            td
+              = link_to admin_tasting_package_url(package.id), method: :delete, class: "btn btn-danger" do
+                i.fa.fa-trash
+                | Delete

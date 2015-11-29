@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    wines_url
+    admin_wines_url
   end
 
   def check_admin_status
     if current_user.admin?
       return
     else
+      flash[:error] = "The section you requested is for admins only."
       redirect_to root_url and return
     end
   end

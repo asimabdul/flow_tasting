@@ -39,6 +39,12 @@ a {
   margin-bottom: 25px;
 }
 
+.table-container {
+  table.table {
+    td { vertical-align: middle }
+  }
+}
+
 @media (min-width: 320px) and (max-width: 992px) {
 
   [class*="col-"]{
