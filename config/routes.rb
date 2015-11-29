@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :wines
     resources :tasting_packages
   end
+
+  post "user_service/create" => "user_service#create"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

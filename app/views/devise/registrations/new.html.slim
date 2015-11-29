@@ -23,7 +23,9 @@
     = f.label :password, class: "col-sm-2 control-label"
     .col-sm-10
       = f.password_field :password, autocomplete: false, class: "form-control"
-
+  
+  = f.hidden_field :admin, value: true
+  
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit "Sign up", class: "btn btn-primary"
