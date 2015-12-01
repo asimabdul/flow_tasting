@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129084931) do
+ActiveRecord::Schema.define(version: 20151130174804) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "event_key",          limit: 255
+    t.text     "description",        limit: 65535
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string   "venue",              limit: 255
+    t.integer  "host_user_id",       limit: 4
+    t.integer  "tasting_package_id", limit: 4
+    t.integer  "receipt_id",         limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["event_key"], name: "index_events_on_event_key", unique: true, using: :btree
+  add_index "events", ["host_user_id"], name: "fk_rails_d65e2e32b2", using: :btree
+  add_index "events", ["tasting_package_id"], name: "fk_rails_51033d7018", using: :btree
+
+  create_table "guests", force: :cascade do |t|
+    t.integer "user_id",    limit: 4
+    t.integer "event_id",   limit: 4
+    t.string  "rsvp_state", limit: 255
+    t.string  "invite_key", limit: 255, null: false
+  end
+
+  add_index "guests", ["event_id"], name: "fk_rails_64ecc46b69", using: :btree
+  add_index "guests", ["invite_key"], name: "index_guests_on_invite_key", unique: true, using: :btree
+  add_index "guests", ["user_id"], name: "fk_rails_9b121eeada", using: :btree
 
   create_table "tasting_packages", force: :cascade do |t|
     t.string   "name",       limit: 255,                         null: false
@@ -66,6 +95,10 @@ ActiveRecord::Schema.define(version: 20151129084931) do
 
   add_index "wines", ["name"], name: "index_wines_on_name", using: :btree
 
+  add_foreign_key "events", "tasting_packages"
+  add_foreign_key "events", "users", column: "host_user_id"
+  add_foreign_key "guests", "events"
+  add_foreign_key "guests", "users"
   add_foreign_key "wine_packages", "tasting_packages"
   add_foreign_key "wine_packages", "wines"
 end

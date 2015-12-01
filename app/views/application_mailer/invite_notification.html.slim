@@ -1,0 +1,11 @@
+p Hi
+
+p You've been invited to 
+  strong #{@guest_invite.event.name}
+
+p
+  | Click 
+  = link_to "here", register_rsvp_url(@guest_invite.invite_key, only_path: false)
+  |  to RSVP to this event
+
+p Thanks.

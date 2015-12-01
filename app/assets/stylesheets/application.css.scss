@@ -16,10 +16,23 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datetimepicker";
 @import "font-awesome";
 
 body {
   padding-top: 70px;
+}
+
+.top-10 {
+  margin-top: 10px;
+}
+
+.top-5 {
+  margin-top: 5px;
+}
+
+.top-15 {
+  margin-top: 15px;
 }
 
 @media only screen and (min-width : 320px) and (max-width: 768px) {

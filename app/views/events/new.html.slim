@@ -1,0 +1,48 @@
+.custom-page-header
+  h4 Create event
+- if @tasting_package_id.nil? || @host_user_id.nil?
+  strong Required parameters are missing. Event cannot be created.
+- else
+  = form_for(@event, as: :event, url: events_path, html: {class: "form-horizontal"}) do |f|
+    
+    .form-group
+      = f.label :name, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :name, class: "form-control", required: true
+
+    .form-group
+      = f.label :description, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_area :description, class: "form-control"
+
+    .form-group
+      = f.label :duration, class: "col-sm-2 control-label"
+      .col-sm-5
+        .input-group.date
+          = f.text_field :starts_at, class: "form-control", id: "datetimepicker_starts_at", required: true, placeholder: "Start date"
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+      .col-sm-5
+        .input-group.date
+          = f.text_field :ends_at, class: "form-control", id: "datetimepicker_ends_at", required: true, placeholder: "End date"
+          span.input-group-addon
+            span.glyphicon.glyphicon-calendar
+
+    .form-group
+      = f.label :venue, class: "col-sm-2 control-label"
+      .col-sm-10
+        = f.text_field :venue, class: "form-control"
+
+    .form-group
+      = label_tag :invite_guests, "Invite guests", class: "col-sm-2 control-label"
+      .col-sm-10
+        = text_area_tag :invite_emails, nil, class: "form-control", placeholder: "Enter emails separated by commas. Eg wilma@gmail.com, fred@yahoo.com"
+
+    = f.hidden_field :tasting_package_id, value: @tasting_package_id
+    = f.hidden_field :host_user_id, value: @host_user_id
+
+    .form-group
+      .col-md-offset-2.col-md-2
+        = f.submit "Create event", class: "btn btn-primary"
+      .col-md-1
+        = link_to "Cancel", admin_wines_url, class: "btn btn-default"

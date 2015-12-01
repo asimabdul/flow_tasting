@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   end
 
   post "user_service/create" => "user_service#create"
+  get "guests/rsvp/:invite_key" => "guests#rsvp", as: "register_rsvp"
+  put "guests/update" => "guests#update"
+
+  resources :events
   
 
   # The priority is based upon order of creation: first created -> highest priority.

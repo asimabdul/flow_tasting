@@ -1,0 +1,52 @@
+.custom-page-header
+  h4 RSVP
+
+.container
+  .row
+    .col-sm-10
+      span 
+        | You've been invited to 
+        strong #{@guest_invite.event.name}
+        |. The event details are provided below. Please register your RSVP.
+  
+  .row.top-10
+    .col-sm-1
+      strong Name
+    .col-sm-10
+      span #{@guest_invite.event.name}
+  .row.top-5
+    .col-sm-1
+      strong Description
+    .col-sm-10
+      span #{@guest_invite.event.description}
+  .row.top-5
+    .col-sm-1
+      strong Duration
+    .col-sm-10
+      span #{@guest_invite.event.starts_at} - #{@guest_invite.event.ends_at}
+  .row.top-5
+    .col-sm-1
+      strong Venue
+    .col-sm-10
+      span #{@guest_invite.event.venue}
+
+  .top-15
+    = form_tag(guests_update_url, method: :put, html: {class: "form-horizontal"}) do
+      = hidden_field_tag :invite_key, params[:invite_key]
+      .form-group
+        = label_tag "Are you going to this event?"
+        .radio
+          label
+            = radio_button_tag "rsvp_choice", :going, @guest_invite.rsvp_state == "going"
+            | Going
+        .radio
+          label
+            = radio_button_tag "rsvp_choice", :not_going, @guest_invite.rsvp_state == "not_going"
+            | Not going
+        .radio
+          label
+            = radio_button_tag "rsvp_choice", :maybe, @guest_invite.rsvp_state == "maybe"
+            | Maybe
+      .form-group
+        = submit_tag "RSVP", class: "btn btn-default"
+
