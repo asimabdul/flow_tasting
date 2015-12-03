@@ -12,6 +12,16 @@ Rails.application.routes.draw do
   get "guests/rsvp/:invite_key" => "guests#rsvp", as: "register_rsvp"
   put "guests/update" => "guests#update"
 
+  resources :scores, only: [:index, :create, :new]
+
+  namespace :events do
+    resources :sessions, only: [:new, :create] do
+      collection do
+        delete :destroy
+      end
+    end
+  end
+
   resources :events
   
 

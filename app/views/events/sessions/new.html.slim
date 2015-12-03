@@ -1,0 +1,17 @@
+.custom-page-header
+  h4 Log in to an event
+
+= form_tag events_sessions_url, class: "form-horizontal" do
+  .form-group
+    = label_tag :email, "Email", class: "col-sm-2 control-label"
+    .col-sm-10
+      = email_field_tag :email, nil, autofocus: true,  class: "form-control"
+
+  .form-group
+    = label_tag :event_key, "Event key", class: "col-sm-2 control-label"
+    .col-sm-10
+      = text_field_tag :event_key, nil,  class: "form-control"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = submit_tag "Log in", class: "btn btn-primary"

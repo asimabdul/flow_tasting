@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  
+  include ApplicationHelper
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -14,6 +16,13 @@ class ApplicationController < ActionController::Base
     else
       flash[:error] = "The section you requested is for admins only."
       redirect_to root_url and return
+    end
+  end
+
+  def require_guest
+    if current_guest.nil?
+      flash[:error] = "Please login with your email and event key to proceed."
+      redirect_to new_events_session_url 
     end
   end
 

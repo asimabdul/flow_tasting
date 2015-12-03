@@ -1,0 +1,38 @@
+.bottom-15
+  h4 Welcome to your scorecard, #{current_guest.user.email}!
+
+- if current_event.completed?
+  .top-20.bottom-25
+    strong This event has ended. Here is how you ranked your wines.
+
+.container
+  ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+    - @wines.each do |wine|
+      li role="presentation"
+        a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}
+
+  .tab-content  
+    - @wines.each do |wine|
+      - new_scorecard = Scorecard.new
+      .tab-pane role="tabpanel" id="#{wine.id}"
+        = form_for(new_scorecard, url: scores_url, html: {class: "form_horizontal top-25"} ) do |f|
+          - flavor_rating = @wine_scorecards[wine.id].try(:flavor) || 0
+          - body_rating = @wine_scorecards[wine.id].try(:body) || 0
+          = f.hidden_field :wine_id, value: wine.id
+
+          .row.top-20
+            .col-sm-2
+              strong.rating-value-holder Flavor - #{flavor_rating}
+            .col-sm-4
+              = f.text_field :flavor, "data-rating-attr" => "Flavor", "data-slider-min" => "0", "data-slider-max" => "10", "data-slider-step" => "1", "data-slider-value" => "#{flavor_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+          .row.top-20
+            .col-sm-2
+              strong.rating-value-holder Body - #{body_rating}
+            .col-sm-4
+              = f.text_field :body, "data-rating-attr" => "Body", "data-slider-min" => "0", "data-slider-max" => "10", "data-slider-step" => "1", "data-slider-value" => "#{body_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+          - if !current_event.completed?
+            .row.top-20
+              .col-sm-2
+                = f.submit "Save", class: "btn btn-primary"

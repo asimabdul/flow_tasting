@@ -4,6 +4,6 @@ class WinePackage < ActiveRecord::Base
   scope :wine_list, ->(tasting_package_id) { where("tasting_package_id = ?", tasting_package_id)
                                              .joins(:wine)
                                              .order(:wine_tasting_code)
-                                             .select("wines.name, wines.id") 
+                                             .select("wines.name, wines.id, wine_packages.wine_tasting_code") 
                                            }
 end

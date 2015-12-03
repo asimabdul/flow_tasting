@@ -12,4 +12,22 @@ module ApplicationHelper
     end
     nil
   end
+
+  def authenticate_guest(email, event_key)
+    user = User.find_by_email(email)
+    return nil if user.nil?
+    event = Event.find_by_event_key(event_key)
+    return nil if event.nil?
+    guest = Guest.where(user: user, event: event).first
+    return guest
+  end
+
+  def current_guest
+    @guest ||= Guest.find(session[:guest_id]) if session[:guest_id]
+  end
+
+  def current_event
+    @event ||= current_guest.event
+  end
+
 end

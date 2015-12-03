@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130174804) do
+ActiveRecord::Schema.define(version: 20151203193223) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20151130174804) do
     t.integer  "receipt_id",         limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",                        default: false
   end
 
   add_index "events", ["event_key"], name: "index_events_on_event_key", unique: true, using: :btree
@@ -41,6 +42,21 @@ ActiveRecord::Schema.define(version: 20151130174804) do
   add_index "guests", ["event_id"], name: "fk_rails_64ecc46b69", using: :btree
   add_index "guests", ["invite_key"], name: "index_guests_on_invite_key", unique: true, using: :btree
   add_index "guests", ["user_id"], name: "fk_rails_9b121eeada", using: :btree
+
+  create_table "scorecards", force: :cascade do |t|
+    t.integer  "flavor",     limit: 4, default: 0
+    t.integer  "body",       limit: 4, default: 0
+    t.integer  "rank",       limit: 4, default: 0
+    t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4
+    t.integer  "wine_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scorecards", ["event_id"], name: "fk_rails_f8d35e43d0", using: :btree
+  add_index "scorecards", ["user_id"], name: "fk_rails_d4bdb5741c", using: :btree
+  add_index "scorecards", ["wine_id"], name: "fk_rails_0a1e88df55", using: :btree
 
   create_table "tasting_packages", force: :cascade do |t|
     t.string   "name",       limit: 255,                         null: false
@@ -99,6 +115,9 @@ ActiveRecord::Schema.define(version: 20151130174804) do
   add_foreign_key "events", "users", column: "host_user_id"
   add_foreign_key "guests", "events"
   add_foreign_key "guests", "users"
+  add_foreign_key "scorecards", "events"
+  add_foreign_key "scorecards", "users"
+  add_foreign_key "scorecards", "wines"
   add_foreign_key "wine_packages", "tasting_packages"
   add_foreign_key "wine_packages", "wines"
 end

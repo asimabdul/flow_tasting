@@ -1,0 +1,17 @@
+.container
+  = form_tag scores_url, class: "form_horizontal top-25" do
+    .row
+      .col-sm-2
+        strong.rating-value-holder Flavor - 0
+      .col-sm-4
+        = text_field_tag :flavor_rating, nil, "data-rating-attr" => "Flavor", "data-slider-min" => "0", "data-slider-max" => "10", "data-slider-step" => "1", "data-slider-value" => "0", class: "rating-slider"
+
+    .row.top-20
+      .col-sm-2
+        strong.rating-value-holder Body - 0
+      .col-sm-4
+        = text_field_tag :body_rating, nil, "data-rating-attr" => "Flavor", "data-slider-min" => "0", "data-slider-max" => "10", "data-slider-step" => "1", "data-slider-value" => "0", class: "rating-slider"
+
+    .row.top-20
+      .col-sm-2
+        = submit_tag "Save", class: "btn btn-primary"
