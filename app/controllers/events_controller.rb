@@ -30,7 +30,6 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update_attributes(event_params)
-    #TODO: Update guests list instead of just adding
     Guest.process_invites(params[:invite_emails].split(", "), event) if params[:invite_emails].present?
     flash[:success] = "The event has been updated"
     redirect_to event_url(params[:id])

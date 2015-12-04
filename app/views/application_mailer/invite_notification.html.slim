@@ -1,8 +1,11 @@
 p Hi
 
-p You've been invited to 
-  strong <%= @guest_invite.event.name %>
+p 
+  | You've been invited to 
+  strong #{@guest_invite.event.try(:name).try(:titleize)}.
 
 p Click #{link_to("here", register_rsvp_url(@guest_invite.invite_key))} to RSVP.
 
-p Thanks.
+p Thanks
+
+p Flow Tasting team

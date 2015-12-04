@@ -40,4 +40,4 @@
     .col-md-offset-2.col-md-2
       = f.submit "Update event", class: "btn btn-primary"
     .col-md-1
-      = link_to "Cancel", admin_wines_url, class: "btn btn-default"
+      = link_to "Cancel", event_url(@event.id), class: "btn btn-default"

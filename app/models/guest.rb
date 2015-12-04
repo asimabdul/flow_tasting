@@ -14,9 +14,12 @@ class Guest < ActiveRecord::Base
   end
 
   def self.process_invites(emails, event)
-    emails.each do |email|
+    valid_emails = emails.select {|email| Guest.valid_email?(email) }
+    return if valid_emails.empty?
+    #Todo: need to handle duplicate email delivery
+    event.guests.delete_all
+    valid_emails.each do |email|
       email = email.strip
-      next if !valid_email?(email)
       user = User.find_or_initialize_by(email: email)
       user.save(validate: false) if user.new_record?
       guest = Guest.find_or_create_by(user: user, event: event) #find_or_create is used to prevent duplicate invites
