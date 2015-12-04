@@ -2,7 +2,7 @@ $(document).ready(ready);
 $(document).on("page:load", ready);
 
 function ready() {
-  
+  console.log("debugging assets");
   $("#datetimepicker_starts_at").datetimepicker({
     format: "YYYY-MM-DD HH:mm"
   });
