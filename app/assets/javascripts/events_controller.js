@@ -20,5 +20,7 @@ function ready() {
     $("#datetimepicker_starts_at").data("DateTimePicker").maxDate(e.date);
   })
 
+  $(".invite-emails-field").tokenfield();
+
 
 }

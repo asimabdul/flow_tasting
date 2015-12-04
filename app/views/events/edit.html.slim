@@ -34,7 +34,7 @@
   .form-group
     = label_tag :invite_guests, "Invite guests", class: "col-sm-2 control-label"
     .col-sm-10
-      = text_area_tag :invite_emails, nil, class: "form-control", placeholder: "Enter emails separated by commas. Eg wilma@gmail.com, fred@yahoo.com"
+      = text_field_tag :invite_emails, @invite_emails, class: "form-control invite-emails-field", placeholder: "Type email and press enter. eg wilma@gmail.com"
 
   .form-group
     .col-md-offset-2.col-md-2

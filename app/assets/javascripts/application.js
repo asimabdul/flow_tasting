@@ -17,4 +17,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require bootstrap-slider
+//= require bootstrap-tokenfield
 //= require_tree .

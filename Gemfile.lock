@@ -52,6 +52,7 @@ GEM
       railties (>= 3.2, < 5.0)
     bootstrap3-datetimepicker-rails (4.14.30)
       momentjs-rails (>= 2.8.1)
+    bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.2)
     byebug (8.2.0)
     coffee-rails (4.1.0)
@@ -193,6 +194,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.5.1)
   bootstrap-slider-rails (~> 5.3.1)
   bootstrap3-datetimepicker-rails (~> 4.14.30)
+  bootstrap_tokenfield_rails
   byebug
   coffee-rails (~> 4.1.0)
   devise
