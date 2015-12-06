@@ -22,6 +22,6 @@ module FlowTasting
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    # config.assets.precompile += %w[*/*]
+    config.assets.precompile += %w[events_controller.js scores_controller.js tasting_packages_controller.js]
   end
 end
