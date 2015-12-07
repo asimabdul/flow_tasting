@@ -2,8 +2,7 @@
 // $(document).on("page:load", ready);
 
 
-$(document).on("click", ".package-wine-add-btn", function(e) {
-  console.log("clicking add")
+$(document).off("click", ".package-wine-add-btn").on("click", ".package-wine-add-btn", function(e) {
   e.preventDefault();
   
   var wineContainer = $("#package-wine-fields .wine-controls")
@@ -21,7 +20,6 @@ $(document).on("click", ".package-wine-add-btn", function(e) {
 })
 
 $(document).on("click", ".package-wine-remove-btn", function(e) {
-  console.log("clicking remove")
   e.preventDefault();
   $(this).parents(".wine-entry:first").remove();
   return false;
