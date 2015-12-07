@@ -76,4 +76,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'flowtasting.herokuapp.com' }
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: "smtp.mailgun.org",
+    user_name: "postmaster@flowtasting.herokuapp.com",
+    password: "bdd89220d0558dcc4fa69f818bcb5f73"
+  }
 end
