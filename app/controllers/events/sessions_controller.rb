@@ -9,6 +9,7 @@ module Events
       guest = authenticate_guest(params[:email], params[:event_key])
       if guest
         session[:guest_id] = guest.id
+        session[:event_key] = params[:event_key]
         redirect_to scores_url
       else
         flash[:error] = "It looks like you haven't been invited for the event."

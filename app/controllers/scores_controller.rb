@@ -5,7 +5,7 @@ class ScoresController < ApplicationController
   def index
     @wines = WinePackage.wine_list(current_event.tasting_package.id)
     @wine_scorecards = @wines.inject({}) do |list, wine|
-      list[wine.id] = Scorecard.where(user: current_guest.user, event: current_event, wine: wine.id).first
+      list[wine.id] = Scorecard.where(user: current_guest, event: current_event, wine: wine.id).first
       list
     end
   end
@@ -17,6 +17,6 @@ class ScoresController < ApplicationController
 
   private
   def scorecard_params
-    params[:scorecard].permit(:wine_id, :flavor, :body).merge({event_id: current_event.id, user_id: current_guest.user.id})
+    params[:scorecard].permit(:wine_id, :rank, :sweetness, :acidity, :finish, :body, :comments).merge({event_id: current_event.id, user_id: current_guest.id})
   end
 end

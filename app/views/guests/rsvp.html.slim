@@ -35,7 +35,7 @@
       = form_tag(guests_update_url, method: :put, html: {class: "form-horizontal"}) do
         = hidden_field_tag :invite_key, params[:invite_key]
         .form-group
-          = label_tag "Are you going to this event?"
+          = label_tag "Please register/change your RSVP."
           .radio
             label
               = radio_button_tag "rsvp_choice", :going, @guest_invite.rsvp_state == "going"

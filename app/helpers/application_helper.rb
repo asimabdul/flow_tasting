@@ -18,16 +18,18 @@ module ApplicationHelper
     return nil if user.nil?
     event = Event.find_by_event_key(event_key)
     return nil if event.nil?
-    guest = Guest.where(user: user, event: event).first
-    return guest
+    return user if event.host == user #allow host to login
+    guest = Guest.where(user: user, event: event).first 
+    return guest.try(:user)
   end
 
+  #This is not defined as current_user to avoid any conflicts with devise#current_user.
   def current_guest
-    @guest ||= Guest.find(session[:guest_id]) if session[:guest_id]
+    @guest ||= User.find(session[:guest_id]) if session[:guest_id]
   end
 
   def current_event
-    @event ||= current_guest.event
+    @event ||= Event.find_by_event_key(session[:event_key]) if session[:event_key]
   end
 
 end

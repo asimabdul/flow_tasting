@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   before_create :generate_event_key
 
+  scope :hosted_by, ->(user_id) {where("host_user_id = ?", user_id)}
+
   private
   def generate_event_key
     self[:event_key] = rand(36**8).to_s(36)

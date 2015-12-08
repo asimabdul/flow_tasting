@@ -16,7 +16,7 @@ html
       - if controller_path.include?("admin")
         == render partial: "/layouts/admin_navbar"
       - elsif %w[events/sessions scores].include?(controller_path)
-        == render partial: "/layouts/guest_navbar"
+        == render partial: "/layouts/event_navbar"
       - else
         == render partial: "/layouts/navbar"
       .container

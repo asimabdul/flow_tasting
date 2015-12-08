@@ -10,14 +10,18 @@ nav.navbar.navbar-default.navbar-fixed-top
       a.navbar-brand href="#"Flow tasting
 
     div#navbar.navbar-collapse.collapse
+
       ul.nav.navbar-nav
+        - if current_guest && current_event.host == current_guest
+          li class="#{controller_name.include?("event") ? "active" : nil}"
+            = link_to "Event", edit_event_url(current_event.id)
         li class="#{controller_name.include?("score") ? "active" : nil}"
           = link_to "Scores", scores_url
 
       - if current_guest
         ul.nav.navbar-nav.navbar-right
           li 
-            a href="#" #{current_guest.user.email}
+            a href="#" #{current_guest.email}
           li = link_to "Close event", events_sessions_url, method: :delete
       - else
         ul.nav.navbar-nav.navbar-right

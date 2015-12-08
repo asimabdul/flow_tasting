@@ -6,6 +6,10 @@ class EventsController < ApplicationController
     @host_user_id = params[:host_user_id]
   end
 
+  def index
+    @events = Event.hosted_by(current_guest.id)
+  end
+
   def create
     event = Event.create(event_params)
     Guest.process_invites(params[:invite_emails].split(", "), event) if event
@@ -19,12 +23,18 @@ class EventsController < ApplicationController
 
   def edit
     event = Event.where(id: params[:id]).includes(guests: :user)
-    @event = event.first
-    @invite_emails = []
-    event.each do |event_obj|
-      event_obj.guests.each {|guest| @invite_emails << guest.user.email }
+    if current_guest == event.first.host
+      @event = event.first
+      @invite_emails = []
+      event.each do |event_obj|
+        event_obj.guests.each {|guest| @invite_emails << guest.user.email }
+      end
+      @invite_emails = @invite_emails.join(",")
+    else
+      flash[:error] = "You are not hosting the event and don't have permission to edit"
+      redirect_to :index
     end
-    @invite_emails = @invite_emails.join(",")
+    
   end
 
   def update

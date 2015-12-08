@@ -1,0 +1,26 @@
+.wine-header
+  .row
+    .col-md-4.col-xs-4
+      strong Events
+
+- if @events.empty?
+  span No events found.
+
+- else
+  .table-container
+    table.table
+      thead
+        tr
+          th Name
+          th Event key
+          th
+
+      tbody
+        - @events.each do |event|
+          tr
+            td #{event.name}
+            td #{event.event_key}
+            td
+              = link_to edit_event_url(event.id), class: "btn btn-default" do
+                i.fa.fa-pencil
+                | Edit

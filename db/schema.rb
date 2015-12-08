@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203193223) do
+ActiveRecord::Schema.define(version: 20151208204408) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -44,14 +44,17 @@ ActiveRecord::Schema.define(version: 20151203193223) do
   add_index "guests", ["user_id"], name: "fk_rails_9b121eeada", using: :btree
 
   create_table "scorecards", force: :cascade do |t|
-    t.integer  "flavor",     limit: 4, default: 0
-    t.integer  "body",       limit: 4, default: 0
-    t.integer  "rank",       limit: 4, default: 0
+    t.string   "body",       limit: 255,   default: "0"
+    t.integer  "rank",       limit: 4,     default: 0
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
     t.integer  "wine_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sweetness",  limit: 255
+    t.string   "acidity",    limit: 255
+    t.string   "finish",     limit: 255
+    t.text     "comments",   limit: 65535
   end
 
   add_index "scorecards", ["event_id"], name: "fk_rails_f8d35e43d0", using: :btree
