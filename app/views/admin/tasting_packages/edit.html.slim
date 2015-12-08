@@ -19,9 +19,13 @@
       .col-sm-10.wine-controls
         .wine-entry
           .row
-            .col-sm-6
+            .col-xs-5.col-sm-5
               = select_tag "wine_selection[]", options_for_select(Wine.wine_selections), class: "form-control"
-            .col-sm-2
+            .col-xs-2.col-sm-2
+              = label_tag "Wine code", nil, class: "control-label"
+            .col-xs-3.col-sm-3
+              = text_field_tag "wine_tasting_codes[]", nil, class: "form-control wine-code-holder", placeholder: "Enter wine code. eg. A"
+            .col-xs-2.col-sm-2
               = link_to "#", class: "btn btn-default package-wine-add-btn" do
                 i.fa.fa-plus
 
@@ -32,9 +36,13 @@
         .col-sm-10.wine-controls
           .wine-entry
             .row
-              .col-sm-6
+              .col-xs-5.col-sm-5
                 = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.first.id), class: "form-control"
-              .col-sm-2
+              .col-xs-2.col-sm-2
+                = label_tag "Wine code", nil, class: "control-label"
+              .col-xs-3.col-sm-3
+                = text_field_tag "wine_tasting_codes[]", @wine_list.first.wine_tasting_code, class: "form-control wine-code-holder", placeholder: "Enter wine code. eg. A"
+              .col-xs-2.col-sm-2
                 = link_to "#", class: "btn btn-default package-wine-add-btn" do
                   i.fa.fa-plus
     - else
@@ -44,19 +52,26 @@
           - @wine_list[0..-2].each do |wine|
             .wine-entry
               .row
-                .col-sm-6
+                .col-xs-5.col-sm-5
                   = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, wine.id), class: "form-control"
-                .col-sm-2
+                .col-xs-2.col-sm-2
+                  = label_tag "Wine code", nil, class: "control-label"
+                .col-xs-3.col-sm-3
+                  = text_field_tag "wine_tasting_codes[]", wine.wine_tasting_code, class: "form-control wine-code-holder",placeholder: "Enter wine code. eg. A"
+                .col-xs-2.col-sm-2
                   = link_to "#", class: "btn btn-danger package-wine-remove-btn" do
                     i.fa.fa-minus
           .wine-entry
             .row
-              .col-sm-6
+              .col-xs-5.col-sm-5
                 = select_tag "wine_selection[]", options_for_select(Wine.wine_selections, @wine_list.last.id), class: "form-control"
-              .col-sm-2
+              .col-xs-2.col-sm-2
+                = label_tag "Wine code", nil, class: "control-label"
+              .col-xs-3.col-sm-3
+                = text_field_tag "wine_tasting_codes[]", @wine_list.last.wine_tasting_code, class: "form-control wine-code-holder",placeholder: "Enter wine code. eg. A"
+              .col-xs-2.col-sm-2
                 = link_to "#", class: "btn btn-default package-wine-add-btn" do
                   i.fa.fa-plus
-
 
   .form-group
     .col-md-offset-2.col-md-2

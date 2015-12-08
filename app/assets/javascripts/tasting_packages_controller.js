@@ -1,6 +1,3 @@
-// $(document).ready(ready);
-// $(document).on("page:load", ready);
-
 
 $(document).off("click", ".package-wine-add-btn").on("click", ".package-wine-add-btn", function(e) {
   e.preventDefault();
@@ -8,7 +5,8 @@ $(document).off("click", ".package-wine-add-btn").on("click", ".package-wine-add
   var wineContainer = $("#package-wine-fields .wine-controls")
   var currentEntry = $(this).parents(".wine-entry:first")
   var newEntry = $(currentEntry.clone()).appendTo(wineContainer)
-  newEntry.find("input").val("")
+
+  newEntry.find('input.wine-code-holder').val("")
 
   wineContainer.find(".wine-entry:not(:last) .btn")
   .addClass("btn-danger")

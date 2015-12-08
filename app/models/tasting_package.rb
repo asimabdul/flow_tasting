@@ -4,7 +4,7 @@ class TastingPackage < ActiveRecord::Base
 
   TASTING_CODES = ("A".."Z").to_a
 
-  def add_wines(wine_ids)
+  def add_wines(wine_ids, custom_tasting_codes=[])
     self.wines.clear #clear to ensure no bad data
     wine_ids.uniq.each_with_index do |wine_id, index|
       begin
@@ -12,7 +12,7 @@ class TastingPackage < ActiveRecord::Base
         wine_package = WinePackage.new
         wine_package.wine_id = wine.id
         wine_package.tasting_package_id = self.id
-        wine_package.wine_tasting_code = TASTING_CODES[index]
+        wine_package.wine_tasting_code = custom_tasting_codes[index] || TASTING_CODES[index]
         wine_package.save!
       rescue
         next

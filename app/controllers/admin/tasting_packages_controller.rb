@@ -15,7 +15,7 @@ module Admin
     def create
       if params[:wine_selection].present?
         @package = TastingPackage.create(tasting_package_params)
-        @package.add_wines(params[:wine_selection])
+        @package.add_wines(params[:wine_selection], params.fetch(:wine_tasting_codes, []))
       else
         flash[:error] = "Tasting packages cannot be created without a wine list."
       end
@@ -41,9 +41,10 @@ module Admin
 
     def update
       if params[:wine_selection].present?
+        wine_tasting_codes = params.fetch(:wine_tasting_codes, []).reject {|el| el.empty?}
         @package = TastingPackage.find(params[:id])
         @package.update_attributes(tasting_package_params)
-        @package.add_wines(params[:wine_selection])
+        @package.add_wines(params[:wine_selection], wine_tasting_codes)
       else
         flash[:error] = "Tasting packages cannot be updated without a wine list."
       end
