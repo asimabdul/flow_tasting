@@ -81,8 +81,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'flowtasting.herokuapp.com' }
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: "smtp.mailgun.org",
-    user_name: "postmaster@flowtasting.herokuapp.com",
-    password: "bdd89220d0558dcc4fa69f818bcb5f73"
+    address: ENV["MAILGUN_SMTP_SERVER"],
+    port: ENV["MAILGUN_SMTP_PORT"],
+    domain: ENV["MAILGUN_DOMAIN"],
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
+    password: ENV["MAILGUN_SMTP_PASSWORD"]
   }
 end
