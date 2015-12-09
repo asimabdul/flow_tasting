@@ -1,0 +1,15 @@
+p Hi
+
+p 
+  | The event  
+  strong #{@event.name}
+  |  has been created.
+
+p 
+  | You may use your email and event key 
+  strong #{@event.event_key} 
+  | to #{link_to "access your event", new_events_session_url}.
+
+p Thanks,
+
+p Flow Tasting team

@@ -1,0 +1,47 @@
+.container
+  ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+    - @wines.each do |wine|
+      li role="presentation"
+        a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}
+
+  .tab-content
+    - @wines.each do |wine|
+      .tab-pane role="tabpanel" id="#{wine.id}"
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Name 
+          .col-sm-4.col.xs-7
+            span #{wine.name}
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Region 
+          .col-sm-4.col.xs-7
+            span #{wine.region}
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Wine type 
+          .col-sm-4.col.xs-7
+            span #{wine.wine_type}
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Description
+          .col-sm-4.col.xs-7
+            span #{wine.description}
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Fun facts
+          .col-sm-4.col.xs-7
+            span #{wine.fun_facts}
+
+        - (1..6).to_a.each do |ranking|
+          .row.top-20
+            .col-xs-5.col-sm-2
+              strong Ranked ##{ranking} by
+            .col-sm-4.col.xs-7
+              span #{Scorecard.count_ranking(current_event.id, wine.id, ranking)}
+

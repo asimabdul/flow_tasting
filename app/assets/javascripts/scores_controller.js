@@ -7,6 +7,9 @@ var acidityScoreMap = { 1: "Low", 2: "Medium", 3: "High" }
 var finishScoreMap = { 1: "Short", 2: "Medium", 3: "Long" }
 
 function ready() {
+
+  $('[data-toggle="popover"]').popover();
+
   $("ul.scorecard-tabs li:first a:first").tab("show");
 
   $(".rating-slider").slider({
@@ -19,7 +22,7 @@ function ready() {
   $(".rating-slider").on("slide", function(e) {
     var sliderElement = $(e.target)
     var sliderValueHolder = sliderElement.closest(".row").find("span.rating-value-holder");
-    sliderValueHolder.text(" - " + translateSliderValue(sliderElement.data("rating-attr"), e.value || 1));
+    sliderValueHolder.text(" - " + translateSliderValue(sliderElement.data("rating-attr"), e.value || sliderElement.data("slider-value")));
   })
 
   $(".rating-slider").trigger("slide");

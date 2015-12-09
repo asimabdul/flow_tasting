@@ -3,6 +3,8 @@ class Scorecard < ActiveRecord::Base
   belongs_to :event
   belongs_to :wine
 
+  scope :count_ranking, ->(event_id, wine_id, rank) {where("event_id = ? and wine_id = ? and rank = ?", event_id, wine_id, rank).count}
+
   BODY_SCORE_MAP = { 1 => "Light", 2 => "Medium", 3 => "Full" }
   SWEETNESS_SCORE_MAP = { 1 => "Dry", 2 => "Medium", 3 => "Sweet" }
   ACIDITY_SCORE_MAP = { 1 => "Low", 2 => "Medium", 3 => "High" }

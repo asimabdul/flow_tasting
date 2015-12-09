@@ -12,9 +12,8 @@ nav.navbar.navbar-default.navbar-fixed-top
     div#navbar.navbar-collapse.collapse
 
       ul.nav.navbar-nav
-        - if current_guest && current_event.host == current_guest
-          li class="#{controller_name.include?("event") ? "active" : nil}"
-            = link_to "Event", edit_event_url(current_event.id)
+        li class="#{controller_name.include?("event") ? "active" : nil}"
+          = link_to "Hosted events", events_url
         li class="#{controller_name.include?("score") ? "active" : nil}"
           = link_to "Scores", scores_url
 

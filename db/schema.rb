@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208204408) do
+ActiveRecord::Schema.define(version: 20151209063758) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20151208204408) do
 
   create_table "scorecards", force: :cascade do |t|
     t.string   "body",       limit: 255,   default: "0"
-    t.integer  "rank",       limit: 4,     default: 0
+    t.integer  "rank",       limit: 4
     t.integer  "user_id",    limit: 4
     t.integer  "event_id",   limit: 4
     t.integer  "wine_id",    limit: 4

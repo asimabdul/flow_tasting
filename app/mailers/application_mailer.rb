@@ -8,4 +8,10 @@ class ApplicationMailer < ActionMailer::Base
     mail to: recipient, subject: "You've been invited!"
   end
 
+  def new_event_notification(event)
+    @event = event
+    recipient = @event.host.email
+    mail to: recipient, subject: "You're event has been created"
+  end
+
 end

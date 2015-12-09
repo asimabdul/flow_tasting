@@ -17,7 +17,7 @@
 
       tbody
         - @events.each do |event|
-          tr
+          tr class="#{(event.host == current_guest && event == current_event) ? "highlight-current-event" : nil}"
             td #{event.name}
             td #{event.event_key}
             td

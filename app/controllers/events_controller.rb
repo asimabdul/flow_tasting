@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_filter :require_guest, only: [:index, :show, :edit, :update]
+
   def new
     @event = Event.new
     @tasting_package_id = params[:tasting_package_id]
@@ -32,7 +34,7 @@ class EventsController < ApplicationController
       @invite_emails = @invite_emails.join(",")
     else
       flash[:error] = "You are not hosting the event and don't have permission to edit"
-      redirect_to :index
+      redirect_to events_url
     end
     
   end
@@ -45,6 +47,7 @@ class EventsController < ApplicationController
     redirect_to event_url(params[:id])
   end
 
+  private
   def event_params
     params[:event].permit(:name, :description, :starts_at, :ends_at, :venue, :tasting_package_id, :host_user_id)
   end
