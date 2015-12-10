@@ -7,7 +7,19 @@
     .row.top-15
       span
         = link_to "Start event", event_control_url(current_event.id, "start"), method: :put, class: "btn btn-primary"
-  - elsif current_event.started?
+  - else
+
+    - if current_event.completed?
+      .final-rankings.bottom-25
+        .row.top-20
+          strong Here is how your guests ranked the wines:
+
+        - current_event.final_scores.each_with_index do |final_score, index|
+          .row.top-20
+            .col-xs-1.col-sm-1
+              strong Rank #{index+1}
+            .col-xs-4.colm-sm-4
+              span #{final_score.wine_name.titleize}
 
     ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
       - @wines.each do |wine|
@@ -32,10 +44,7 @@
                     - @guest_scorecards.each_with_index do |guest_scorecard|
                       td #{score_for(current_event.id, wine.id, guest_scorecard.user.id).try(attribute.to_sym) || 0}
 
-
+  - if current_event.started? && !current_event.completed?
     .row.top-15
       span
         = link_to "Finish event", event_control_url(current_event.id, "finish"), method: :put, class: "btn btn-danger"
-  - else current_event.completed?
-    .row
-      span This event has completed. Scores will be available soon.

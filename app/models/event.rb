@@ -27,7 +27,8 @@ class Event < ActiveRecord::Base
 
   def final_scores
     Scorecard.where(event_id: self.id)
-             .select("sum(rank) as wine_rank, wine_id")
+             .joins(:wine)
+             .select("sum(rank) as wine_rank, wine_id, wines.name as wine_name")
              .group(:wine_id)
              .order("wine_rank")
   end
