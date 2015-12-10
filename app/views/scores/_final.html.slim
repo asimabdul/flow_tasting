@@ -35,8 +35,14 @@
         .row.top-20
           .col-xs-5.col-sm-2
             strong Fun facts
-          .col-sm-4.col.xs-7
+          .col-sm-4.col-xs-7
             span #{wine.fun_facts}
+
+        .row.top-20
+          .col-xs-5.col-sm-2
+            strong Group Ranking
+          .col-sm-4.col-xs-7
+            span #{group_ranking(current_event.id, wine.id)}
 
         - (1..6).to_a.each do |ranking|
           .row.top-20
