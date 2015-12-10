@@ -19,7 +19,7 @@ function ready() {
     }
   });
 
-  $(".rating-slider").on("slide", function(e) {
+  $(".rating-slider").on("slide slideStop", function(e) {
     var sliderElement = $(e.target)
     var sliderValueHolder = sliderElement.closest(".row").find("span.rating-value-holder");
     sliderValueHolder.text(" - " + translateSliderValue(sliderElement.data("rating-attr"), e.value || sliderElement.data("slider-value")));

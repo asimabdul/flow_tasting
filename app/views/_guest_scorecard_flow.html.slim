@@ -1,0 +1,97 @@
+.bottom-15
+    h4 Welcome to your scorecard, #{current_guest.email}!
+
+- if current_event.unstarted?
+  .container
+    .row.top-20
+      span This event has not started yet. You will get access to your scorecard once the event begins.
+
+- elsif current_event.started?
+  .container
+    ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+      - @wines.each do |wine|
+        li role="presentation"
+          a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}
+
+    .tab-content  
+      - @wines.each do |wine|
+        - new_scorecard = @wine_scorecards[wine.id] || Scorecard.new
+        .tab-pane role="tabpanel" id="#{wine.id}"
+          = form_for(new_scorecard, url: scores_url, method: :post, html: {class: "form_horizontal top-25"} ) do |f|
+            
+            - body_rating = new_scorecard.try(:body) || 1
+            - sweetness_rating = new_scorecard.try(:sweetness) || 1
+            - acidity_rating = new_scorecard.try(:acidity) || 1
+            - finish_rating = new_scorecard.try(:finish) || 1
+            - scorecard_rank = new_scorecard.try(:rank) || 1
+            - comments_val = new_scorecard.try(:comments) || nil
+
+            = f.hidden_field :wine_id, value: wine.id
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#", "data-toggle" => "popover", "title" => "Body", "data-content" => "Lorem ipsum", "data-placement" => "top", "data-trigger" => "focus" do
+                    i.fa.fa-info-circle
+                strong.rating-value-holder Body 
+                span.rating-value-holder - #{body_rating}
+              .col-sm-4.col-xs-7
+                = f.text_field :body, "data-rating-attr" => "body", "data-slider-min" => "1", "data-slider-max" => "3", "data-slider-step" => "1", "data-slider-value" => "#{body_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#", "data-toggle" => "popover", "title" => "Sweetness", "data-content" => "Lorem ipsum", "data-placement" => "top" do
+                    i.fa.fa-info-circle
+                strong.rating-value-holder Sweetness 
+                span.rating-value-holder - #{sweetness_rating}
+              .col-sm-4.col-xs-7
+                = f.text_field :sweetness, "data-rating-attr" => "sweetness", "data-slider-min" => "1", "data-slider-max" => "3", "data-slider-step" => "1", "data-slider-value" => "#{sweetness_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#" do
+                    i.fa.fa-info-circle
+                strong.rating-value-holder Acidity 
+                span.rating-value-holder - #{acidity_rating}
+              .col-sm-4.col-xs-7
+                = f.text_field :acidity, "data-rating-attr" => "acidity", "data-slider-min" => "1", "data-slider-max" => "3", "data-slider-step" => "1", "data-slider-value" => "#{acidity_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#" do
+                    i.fa.fa-info-circle
+                strong.rating-value-holder Finish 
+                span.rating-value-holder - #{finish_rating}
+              .col-sm-4.col-xs-7
+                = f.text_field :finish, "data-rating-attr" => "finish", "data-slider-min" => "1", "data-slider-max" => "3", "data-slider-step" => "1", "data-slider-value" => "#{finish_rating}", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#" do
+                    i.fa.fa-info-circle
+                strong.rating-value-holder Rank
+                - puts "\n scorecard rank #{scorecard_rank}"
+                span.rating-value-holder - #{scorecard_rank}
+              .col-sm-4.col-xs-7
+                = f.text_field :rank, "data-rating-attr" => "rank", "data-slider-min" => "1", "data-slider-max" => "6", "data-slider-step" => "1", "data-slider-value" => "#{scorecard_rank}", "data-slider-reversed" => "true", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+
+            .row.top-20
+              .col-xs-5.col-sm-2
+                span
+                  = link_to "#" do
+                    i.fa.fa-info-circle
+                strong Comments
+              .col-sm-4.col-xs-7
+                = f.text_area :comments, class: "form-control"
+
+
+            - if !current_event.completed?
+              .row.top-20
+                .col-sm-2
+                  = f.submit "Save", class: "btn btn-primary"

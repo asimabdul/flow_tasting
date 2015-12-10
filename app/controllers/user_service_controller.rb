@@ -6,7 +6,7 @@ class UserServiceController < ApplicationController
     user = User.new(create_user_params)
     user.save(validate: false)
     if user.persisted?
-      render json: {message: "User -- #{user.email} created", error: nil}, status: :created
+      render json: {message: "User created", email: user.email, id: user.id, error: nil}, status: :created
     else
       render json: {message: nil, error: "User could not be created. Please check your inputs."}, status: :bad_request
     end

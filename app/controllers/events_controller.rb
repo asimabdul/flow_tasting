@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_filter :require_guest, only: [:index, :show, :edit, :update]
+  before_filter :require_guest, only: [:index, :show, :edit, :update, :control]
 
   def new
     @event = Event.new
@@ -45,6 +45,16 @@ class EventsController < ApplicationController
     Guest.process_invites(params[:invite_emails].split(", "), event) if params[:invite_emails].present?
     flash[:success] = "The event has been updated"
     redirect_to event_url(params[:id])
+  end
+
+  def control
+    event = Event.find(params[:id])
+    if params[:operation] == "start"
+      event.start_event!
+    elsif params[:operation] == "finish"
+      event.finish_event!
+    end
+    redirect_to scores_url
   end
 
   private

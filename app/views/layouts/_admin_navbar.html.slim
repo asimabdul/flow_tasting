@@ -20,8 +20,8 @@ nav.navbar.navbar-default.navbar-fixed-top
         ul.nav.navbar-nav.navbar-right
           li 
             a href="#" #{current_user.first_name}
-          li = link_to "Log out", destroy_user_session_url, method: :delete
+          li = link_to "Log out", "/admin/logout", method: :delete
       - else
         ul.nav.navbar-nav.navbar-right
           li
-            = link_to "Log in", new_user_session_url
+            = link_to "Admin login", "/admin/login"

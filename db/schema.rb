@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209063758) do
+ActiveRecord::Schema.define(version: 20151209203608) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151209063758) do
     t.integer  "receipt_id",         limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed",                        default: false
+    t.string   "state",              limit: 255
   end
 
   add_index "events", ["event_key"], name: "index_events_on_event_key", unique: true, using: :btree

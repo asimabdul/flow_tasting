@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
 
+  devise_scope :user do
+    get "admin/login" => "devise/sessions#new"
+    delete "admin/logout" => "devise/sessions#destroy"
+  end
+
   root "home#index"
   
   namespace :admin do
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :events
   
+  put "events/:id/:operation" , to: "events#control", as: "event_control"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

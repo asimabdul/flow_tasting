@@ -8,6 +8,7 @@ class ScoresController < ApplicationController
       list[wine.id] = Scorecard.where(user: current_guest, event: current_event, wine: wine.id).first
       list
     end
+    @guest_scorecards = current_event.guests.includes(:user)
   end
 
   def create

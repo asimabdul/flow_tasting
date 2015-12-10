@@ -1,0 +1,41 @@
+.bottom-15
+  h4 Welcome to your event, #{current_guest.email}!
+.container
+  - if current_event.unstarted?
+    .row
+      span This event has not started yet.
+    .row.top-15
+      span
+        = link_to "Start event", event_control_url(current_event.id, "start"), method: :put, class: "btn btn-primary"
+  - elsif current_event.started?
+
+    ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+      - @wines.each do |wine|
+        li role="presentation"
+          a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}
+
+    .tab-content  
+      - @wines.each do |wine|
+        - new_scorecard = @wine_scorecards[wine.id] || Scorecard.new
+        .tab-pane role="tabpanel" id="#{wine.id}"
+          .row.top-20
+            table.table
+              thead
+                tr
+                  th Attributes
+                  - @guest_scorecards.each do |guest_scorecard|
+                    th #{guest_scorecard.user.email}
+              tbody
+                - %w[body sweetness acidity finish rank].each do |attribute, index|
+                  tr
+                    td #{attribute.titleize}
+                    - @guest_scorecards.each_with_index do |guest_scorecard|
+                      td #{score_for(current_event.id, wine.id, guest_scorecard.user.id).try(attribute.to_sym) || 0}
+
+
+    .row.top-15
+      span
+        = link_to "Finish event", event_control_url(current_event.id, "finish"), method: :put, class: "btn btn-danger"
+  - else current_event.completed?
+    .row
+      span This event has completed. Scores will be available soon.
