@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'flowtasting.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'app.flowtasting.com' }
   config.action_mailer.smtp_settings = {
     authentication: :plain,
     address: ENV["MAILGUN_SMTP_SERVER"],
