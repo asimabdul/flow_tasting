@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-gem "thin", "~> 1.6.2"
+# gem "thin", "~> 1.6.2"
+gem "unicorn", "~> 5.0.1"
 gem "mysql2", "~> 0.3.18"
 
 # Use SCSS for stylesheets
@@ -37,6 +38,7 @@ gem "aasm", "~> 3.4.0"
 gem 'bootstrap_tokenfield_rails'
 gem 'spring'
 gem 'sidekiq'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
