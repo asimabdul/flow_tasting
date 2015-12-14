@@ -1,0 +1,15 @@
+p Hi
+
+p 
+  | Thank you for purchasing 
+  strong #{@tasting_package.name}.
+
+p 
+  | You may 
+  | #{link_to "create", new_event_url(tasting_package_id: @tasting_package.id, host_user_id: @user.id)}
+  |  your event at this time.
+  
+
+p Thanks,
+
+p Flow Tasting team
