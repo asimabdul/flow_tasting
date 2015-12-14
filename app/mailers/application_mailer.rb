@@ -14,4 +14,11 @@ class ApplicationMailer < ActionMailer::Base
     mail to: recipient, subject: "You're event has been created"
   end
 
+  def make_event_notification(package, user)
+    @tasting_package = package
+    @user = user
+    recipient = @user.email
+    mail to: recipient, subject: "Create your event on Flow Tasting!"
+  end
+
 end
