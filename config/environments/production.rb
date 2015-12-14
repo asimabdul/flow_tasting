@@ -84,7 +84,7 @@ Rails.application.configure do
     address: ENV["MAILGUN_SMTP_SERVER"],
     port: ENV["MAILGUN_SMTP_PORT"],
     domain: ENV["MAILGUN_DOMAIN"],
-    user_name: "postmaster@sandboxcab2397cd1e642a09747744aef55ee22.mailgun.org",
-    password: "f01df3c15ca4598d324c59a76a1c1cb4"
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
+    password: ENV["MAILGUN_SMTP_PASSWORD"]
   }
 end
