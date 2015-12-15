@@ -1,5 +1,5 @@
 .bottom-15
-    h4 Welcome to your scorecard, #{current_guest.email}!
+    h4 Welcome to #{current_event.name.titleize}!
 
 - if current_event.unstarted?
   .container
@@ -89,9 +89,11 @@
                 strong Comments
               .col-sm-4.col-xs-7
                 = f.text_area :comments, class: "form-control"
-
-
-            - if !current_event.completed?
-              .row.top-20
-                .col-sm-2
+            
+            .row.top-25
+              - if !current_event.completed?
+                span.padding-left-15
                   = f.submit "Save", class: "btn btn-primary"
+              - if current_guest == current_event.host
+                span.left-15
+                  = link_to "Taster details", scores_url, class: "btn btn-primary"

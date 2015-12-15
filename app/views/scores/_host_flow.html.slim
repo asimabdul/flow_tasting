@@ -1,5 +1,5 @@
 .bottom-15
-  h4 Welcome to your event, #{current_guest.email}!
+  h4 Welcome to #{current_event.name.titleize}!
 .container
   - if current_event.unstarted?
     .row
@@ -48,3 +48,5 @@
     .row.top-15
       span
         = link_to "Finish event", event_control_url(current_event.id, "finish"), method: :put, class: "btn btn-danger"
+      span.left-15
+        = link_to "Taste wine", scores_url(host_card: "show"), class: "btn btn-primary"

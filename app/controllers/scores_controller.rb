@@ -9,6 +9,7 @@ class ScoresController < ApplicationController
       list
     end
     @guest_scorecards = current_event.guests.includes(:user)
+    @host_card = true if params[:host_card] == "show"
   end
 
   def create
