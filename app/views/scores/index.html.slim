@@ -1,4 +1,6 @@
-- if current_guest == current_event.host
+- if current_guest == current_event.host && @host_card == true
+  == render partial: "guest_scorecard_flow", locals: {host_card: true}
+- elsif current_guest == current_event.host
   == render partial: "host_flow"
 - elsif current_event.completed? && current_guest != current_event.host
   == render partial: "final"
