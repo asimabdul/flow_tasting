@@ -1,0 +1,31 @@
+.wine-header
+  .row
+    .col-md-4.col-xs-4
+      strong Events
+
+- if @events.empty?
+ span No events.
+
+- else
+  .table-container
+    table.table
+      thead
+        tr
+          th Name
+          th Event key
+          th Host
+          th Place
+          th Date
+          th Tasting Package
+
+      tbody
+        - @events.each do |event|
+          tr
+            td 
+              = link_to "#{event.name}", admin_event_url(event.id)
+            #{event.name}
+            td #{event.event_key}
+            td #{event.host.email}
+            td #{event.venue}
+            td 
+            td #{event.tasting_package.name}

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :wines
     resources :tasting_packages
+    resources :events, only: [:index, :show]
   end
 
   post "user_service/create" => "user_service#create"
