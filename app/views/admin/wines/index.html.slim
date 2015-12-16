@@ -12,21 +12,17 @@
 
 - else
   .table-container
-    table.table
+    table.table.sortable
       thead
         tr
-          th #
           th Name
           th Price
           th Region
           th Type
-          th
-          th
 
       tbody
         - @wines.each do |wine|
           tr
-            td #{wine.id}
             td #{wine.name}
             td #{number_to_currency(wine.price)}
             td #{wine.region}

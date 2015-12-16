@@ -18,4 +18,5 @@
 //= require bootstrap-datetimepicker
 //= require bootstrap-slider
 //= require bootstrap-tokenfield
+//= require jquery-tablesorter
 //= require_tree .
