@@ -38,6 +38,7 @@ gem "aasm", "~> 3.4.0"
 gem 'bootstrap_tokenfield_rails'
 gem 'spring'
 gem 'sidekiq'
+gem 'jquery-tablesorter'
 
 
 group :development, :test do

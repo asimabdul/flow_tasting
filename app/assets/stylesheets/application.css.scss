@@ -69,6 +69,12 @@ body {
   padding-left: 15px;
 }
 
+table.sortable {
+  th {
+    cursor: pointer;
+  }
+}
+
     
 
 @media only screen and (min-width : 320px) and (max-width: 768px) {

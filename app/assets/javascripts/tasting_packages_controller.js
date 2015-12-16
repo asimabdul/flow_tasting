@@ -23,3 +23,9 @@ $(document).on("click", ".package-wine-remove-btn", function(e) {
   return false;
 })
 
+$(document).ready(ready);
+$(document).on("page:load", ready);
+
+function ready() {
+  $("table").tablesorter();
+}

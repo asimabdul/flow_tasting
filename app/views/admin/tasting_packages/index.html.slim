@@ -11,19 +11,15 @@
 
 - else
   .table-container
-    table.table
+    table.table.sortable
       thead
         tr
-          th #
           th Name
           th Price
-          th
-          th
 
       tbody
         - @packages.each do |package|
           tr
-            td #{package.id}
             td 
               = link_to "#{package.name}", admin_tasting_package_url(package.id)
             #{package.name}
