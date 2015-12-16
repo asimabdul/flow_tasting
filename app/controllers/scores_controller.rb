@@ -14,7 +14,11 @@ class ScoresController < ApplicationController
 
   def create
     scorecard = Scorecard.create_scorecard(scorecard_params)
-    redirect_to scores_url
+    if params[:trigger_host_card].present?
+      redirect_to scores_url(host_card: "show")
+    else
+      redirect_to scores_url
+    end
   end
 
   private

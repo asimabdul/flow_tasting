@@ -1,5 +1,5 @@
 .container
-  ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+  ul.nav.nav-pills.nav-justified.scorecard-tabs role="tablist"
     - @wines.each do |wine|
       li role="presentation"
         a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}

@@ -33,6 +33,20 @@ class Event < ActiveRecord::Base
              .order("wine_rank")
   end
 
+  def current_guest_rankings(user_id)
+    score_cards = Scorecard.where(event_id: self.id, user_id: user_id)
+                           .joins(:wine)
+                           .select("sum(rank) as wine_rank, wine_id, wines.name as wine_name")
+                           .group(:wine_id)
+                           .order("wine_rank")
+
+    result = []
+    score_cards.each do |card|
+      result << WinePackage.where(tasting_package_id: self.tasting_package.id, wine_id: card.wine_id).first.try(:wine_tasting_code)
+    end
+    result
+  end
+
   private
   def generate_event_key
     self[:event_key] = rand(36**8).to_s(36)

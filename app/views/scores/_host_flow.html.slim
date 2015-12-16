@@ -16,12 +16,12 @@
 
         - current_event.final_scores.each_with_index do |final_score, index|
           .row.top-20
-            .col-xs-1.col-sm-1
+            .col-xs-3.col-sm-1
               strong Rank #{index+1}
-            .col-xs-4.colm-sm-4
+            .col-xs-7.col-sm-4
               span #{final_score.wine_name.titleize}
 
-    ul.nav.nav-tabs.nav-justified.scorecard-tabs role="tablist"
+    ul.nav.nav-pills.nav-justified.scorecard-tabs.top-20 role="tablist"
       - @wines.each do |wine|
         li role="presentation"
           a href="##{wine.id}" aria-controls="#{wine.id}" role="tab" data-toggle="tab" Wine #{wine.wine_tasting_code}
