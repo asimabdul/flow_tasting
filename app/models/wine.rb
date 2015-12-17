@@ -7,7 +7,7 @@ class Wine < ActiveRecord::Base
 
 
   def self.wine_selections
-    Wine.all.collect {|wine| [wine.name, wine.id]}
+    Wine.all.collect {|wine| [wine.name, wine.id]}.sort {|wine_a, wine_b| wine_a.first <=> wine_b.first}
   end
 
   def vintage=(value)
