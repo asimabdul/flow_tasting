@@ -24,12 +24,12 @@
       .col-sm-1
         strong Date
       .col-sm-10
-        span #{@guest_invite.event.event_date}
+        span #{@guest_invite.event.parse_event_date}
     .row.top-5
       .col-sm-1
         strong Date
       .col-sm-10
-        span #{@guest_invite.event.event_time}
+        span #{@guest_invite.event.parse_event_time}
     .row.top-5
       .col-sm-1
         strong Place
