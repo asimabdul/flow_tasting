@@ -11,7 +11,7 @@
   .form-group
     = f.label :price, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :price, class: "form-control", required: true
+      = f.number_field :price, value: number_with_precision(f.object.price, precision: 2) , class: "form-control", required: true, step: 0.01
 
   .form-group
     = f.label :region, class: "col-sm-2 control-label"

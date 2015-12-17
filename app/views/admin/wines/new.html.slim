@@ -21,7 +21,7 @@
   .form-group
     = f.label :price, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :price, class: "form-control", required: true
+      = f.number_field :price, class: "form-control", required: true, step: "any"
 
   .form-group
     = f.label :description, class: "col-sm-2 control-label"
