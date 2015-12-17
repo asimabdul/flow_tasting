@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216232935) do
+ActiveRecord::Schema.define(version: 20151217185631) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.string   "event_key",          limit: 255
     t.text     "description",        limit: 65535
     t.datetime "starts_at"
-    t.datetime "ends_at"
     t.string   "venue",              limit: 255
     t.integer  "host_user_id",       limit: 4
     t.integer  "tasting_package_id", limit: 4

@@ -14,20 +14,15 @@
       = f.text_area :description, class: "form-control", required: true
 
   .form-group
-    = f.label :duration, class: "col-sm-2 control-label"
-    .col-sm-5
+    = f.label "Date and time", class: "col-sm-2 control-label"
+    .col-sm-10
       .input-group.date
         = f.text_field :starts_at, class: "form-control", id: "datetimepicker_starts_at", required: true, placeholder: "Start date"
         span.input-group-addon
           span.glyphicon.glyphicon-calendar
-    .col-sm-5
-      .input-group.date
-        = f.text_field :ends_at, class: "form-control", id: "datetimepicker_ends_at", required: true, placeholder: "End date"
-        span.input-group-addon
-          span.glyphicon.glyphicon-calendar
 
   .form-group
-    = f.label :venue, class: "col-sm-2 control-label"
+    = f.label :place, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :venue, class: "form-control"
 
