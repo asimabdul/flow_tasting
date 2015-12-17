@@ -9,4 +9,9 @@ class Wine < ActiveRecord::Base
   def self.wine_selections
     Wine.all.collect {|wine| [wine.name, wine.id]}
   end
+
+  def vintage=(value)
+    self[:vintage] = value.to_i
+  end
+
 end

@@ -35,7 +35,7 @@ module Admin
 
     private
     def wine_params
-      params[:wine].permit(:name, :region, :wine_type, :description, :fun_facts, :price)
+      params[:wine].permit(:name, :region, :wine_type, :description, :fun_facts, :price, :producer, :vintage)
     end
   end
 end

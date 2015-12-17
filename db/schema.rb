@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209203608) do
+ActiveRecord::Schema.define(version: 20151216232935) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 20151209203608) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "price",                     precision: 8, scale: 2
+    t.string   "producer",    limit: 255
+    t.integer  "vintage",     limit: 4
   end
 
   add_index "wines", ["name"], name: "index_wines_on_name", using: :btree
