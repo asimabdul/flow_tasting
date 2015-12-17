@@ -22,9 +22,14 @@
         span #{@guest_invite.event.description}
     .row.top-5
       .col-sm-1
-        strong Date and time
+        strong Date
       .col-sm-10
-        span #{@guest_invite.event.starts_at}
+        span #{@guest_invite.event.event_date}
+    .row.top-5
+      .col-sm-1
+        strong Date
+      .col-sm-10
+        span #{@guest_invite.event.event_time}
     .row.top-5
       .col-sm-1
         strong Place
