@@ -47,6 +47,18 @@ class Event < ActiveRecord::Base
     result
   end
 
+  def parse_event_time
+    self[:event_time].strftime("%I:%M %p") if self[:event_time]
+  end
+
+  def parse_event_date
+    self[:event_date].strftime('%m/%d/%Y') if self[:event_date]
+  end
+
+  def event_date=(value)
+    self[:event_date] = Date.strptime(value, '%m/%d/%Y')
+  end
+
   private
   def generate_event_key
     self[:event_key] = rand(36**8).to_s(36)

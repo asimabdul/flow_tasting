@@ -28,9 +28,15 @@
 
     .row.top-5
       .col-sm-2.col-sm-offset-2
-        strong Date and time
+        strong Date
       .col-sm-6
-        span #{@event.starts_at}
+        span #{@event.parse_event_date}
+
+    .row.top-5
+      .col-sm-2.col-sm-offset-2
+        strong Time
+      .col-sm-6
+        span #{@event.parse_event_time}
 
     .row.top-5
       .col-sm-2.col-sm-offset-2

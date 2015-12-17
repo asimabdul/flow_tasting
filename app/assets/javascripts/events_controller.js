@@ -2,10 +2,9 @@ $(document).ready(ready);
 $(document).on("page:load", ready);
 
 function ready() {
-  $("#datetimepicker_starts_at").datetimepicker({
-    format: "YYYY-MM-DD HH:mm",
-    minDate: moment()
-  });
+  $("#event_date_picker").datepicker();
+
+  $("#event_time_picker").timepicker();
 
   $(".invite-emails-field").tokenfield();
 

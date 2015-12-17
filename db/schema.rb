@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217185631) do
+ActiveRecord::Schema.define(version: 20151217195151) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.string   "event_key",          limit: 255
     t.text     "description",        limit: 65535
-    t.datetime "starts_at"
     t.string   "venue",              limit: 255
     t.integer  "host_user_id",       limit: 4
     t.integer  "tasting_package_id", limit: 4
@@ -25,6 +24,8 @@ ActiveRecord::Schema.define(version: 20151217185631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",              limit: 255
+    t.date     "event_date"
+    t.time     "event_time"
   end
 
   add_index "events", ["event_key"], name: "index_events_on_event_key", unique: true, using: :btree
