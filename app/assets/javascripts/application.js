@@ -15,7 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require moment
-//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
 //= require bootstrap-slider
 //= require bootstrap-tokenfield
 //= require jquery-tablesorter

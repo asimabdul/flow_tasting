@@ -29,7 +29,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "bootstrap-sass", "~> 3.3.5.1"
 gem "font-awesome-rails", "~> 4.4.0.0"
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+gem 'bootstrap-datepicker-rails'
+# gem 'bootstrap-timepicker-rails'
+gem 'bootstrap-timepicker-rails-addon', '~> 0.5.1'
 gem 'bootstrap-slider-rails', '~> 5.3.1'
 gem "slim-rails", "~> 3.0.1"
 gem "devise"

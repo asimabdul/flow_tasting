@@ -14,12 +14,20 @@
       = f.text_area :description, class: "form-control", required: true
 
   .form-group
-    = f.label "Date and time", class: "col-sm-2 control-label"
+    = f.label "Date", class: "col-sm-2 control-label"
     .col-sm-10
       .input-group.date
-        = f.text_field :starts_at, class: "form-control", id: "datetimepicker_starts_at", required: true, placeholder: "Start date"
+        = f.text_field :event_date, value: f.object.parse_event_date, class: "form-control", id: "event_date_picker", required: true, placeholder: "Event date"
         span.input-group-addon
           span.glyphicon.glyphicon-calendar
+
+  .form-group
+    = f.label "Time", class: "col-sm-2 control-label"
+    .col-sm-10
+      .input-group.date
+        = f.text_field :event_time, value: f.object.parse_event_time,class: "form-control", id: "event_time_picker", required: true, placeholder: "Event time"
+        span.input-group-addon
+          span.glyphicon.glyphicon-time
 
   .form-group
     = f.label :place, class: "col-sm-2 control-label"

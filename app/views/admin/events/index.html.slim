@@ -14,8 +14,9 @@
           th Name
           th Event key
           th Host
-          th Place
           th Date
+          th Time
+          th Place
           th Tasting Package
 
       tbody
@@ -26,6 +27,7 @@
             #{event.name}
             td #{event.event_key}
             td #{event.host.email}
+            td #{event.parse_event_date}
+            td #{event.parse_event_time}
             td #{event.venue}
-            td 
             td #{event.tasting_package.name}
