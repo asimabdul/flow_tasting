@@ -19,6 +19,8 @@
           th Price
           th Region
           th Type
+          th Producer
+          th Vintage
 
       tbody
         - @wines.each do |wine|
@@ -27,6 +29,8 @@
             td #{number_to_currency(wine.price)}
             td #{wine.region}
             td #{wine.wine_type}
+            td #{wine.producer}
+            td #{wine.vintage}
             td
               = link_to edit_admin_wine_path(wine.id), class: "btn btn-default" do
                 i.fa.fa-pencil
