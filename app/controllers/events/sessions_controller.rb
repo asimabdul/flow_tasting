@@ -12,7 +12,7 @@ module Events
         session[:event_key] = params[:event_key]
         redirect_to events_url
       else
-        flash[:error] = "It looks like you haven't been invited for the event."
+        flash[:error] = "It looks like you haven't been invited for the event. Please contact the event's host for more details."
         redirect_to new_events_session_url
       end
     end

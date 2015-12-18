@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217195151) do
+ActiveRecord::Schema.define(version: 20151218194953) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",               limit: 255
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20151217195151) do
     t.integer "user_id",    limit: 4
     t.integer "event_id",   limit: 4
     t.string  "rsvp_state", limit: 255
-    t.string  "invite_key", limit: 255, null: false
+    t.string  "invite_key", limit: 255,                 null: false
+    t.boolean "notified",               default: false
   end
 
   add_index "guests", ["event_id"], name: "fk_rails_64ecc46b69", using: :btree

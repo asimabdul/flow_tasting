@@ -17,7 +17,17 @@ class Guest < ActiveRecord::Base
     valid_emails = emails.select {|email| Guest.valid_email?(email) }
     return if valid_emails.empty?
     #Todo: need to handle duplicate email delivery
-    event.guests.delete_all
+    # event.guests.delete_all
+
+    event.guests.each do |guest|
+      guest_email = guest.user.email
+      if valid_emails.include?(guest_email)
+        next
+      else
+        guest.destroy #remove the guest who is not present in the updated list of emails
+      end
+    end
+
     valid_emails.each do |email|
       email = email.strip
       user = User.find_or_initialize_by(email: email)
@@ -54,7 +64,10 @@ class Guest < ActiveRecord::Base
 
   private
   def send_email_notification
-    ApplicationMailer.invite_notification(self).deliver_later
+    if !self.notified?
+      ApplicationMailer.invite_notification(self).deliver_later
+      self.update_attribute(:notified, true)
+    end
   end
 
   def generate_invite_key
