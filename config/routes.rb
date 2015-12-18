@@ -32,7 +32,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    member do
+      post :send_reminder
+    end
+  end
   
   put "events/:id/:operation" , to: "events#control", as: "event_control"
 

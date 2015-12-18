@@ -47,6 +47,10 @@ class Event < ActiveRecord::Base
     result
   end
 
+  def send_reminders
+    guests.each {|guest| guest.send_reminder}
+  end
+
   def parse_event_time
     self[:event_time].strftime("%I:%M %p") if self[:event_time]
   end

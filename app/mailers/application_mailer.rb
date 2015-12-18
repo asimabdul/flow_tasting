@@ -21,4 +21,10 @@ class ApplicationMailer < ActionMailer::Base
     mail to: recipient, subject: "Create your event on Flow Tasting!"
   end
 
+  def remind_guest(guest)
+    @guest = guest
+    recipient = @guest.user.email
+    mail to: recipient, subject: "This is a reminder for your event!"
+  end
+
 end

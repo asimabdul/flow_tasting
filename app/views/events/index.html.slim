@@ -18,7 +18,9 @@
       tbody
         - @events.each do |event|
           tr class="#{(event.host == current_guest && event == current_event) ? "highlight-current-event" : nil}"
-            td #{event.name}
+            td
+              = link_to "#{event.name}", event_url(event.id)
+            #{event.name}
             td #{event.event_key}
             td
               = link_to edit_event_url(event.id), class: "btn btn-default" do

@@ -35,6 +35,10 @@ class Guest < ActiveRecord::Base
     end
   end
 
+  def send_reminder
+    ApplicationMailer.remind_guest(self).deliver_later
+  end
+
   private
   def send_email_notification
     ApplicationMailer.invite_notification(self).deliver_later

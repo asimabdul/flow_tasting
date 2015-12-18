@@ -23,6 +23,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def send_reminder
+    event = Event.find(params[:id])
+    event.send_reminders
+    flash[:success] = "Reminders have been sent to your guests."
+    redirect_to event_url(event.id)
+  end
+
   def edit
     event = Event.where(id: params[:id]).includes(guests: :user)
     if current_guest == event.first.host
