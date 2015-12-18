@@ -5,7 +5,7 @@ class ApplicationMailer < ActionMailer::Base
   def invite_notification(guest_invite)
     @guest_invite = guest_invite
     recipient = @guest_invite.user.email
-    mail to: recipient, subject: "You've been invited!"
+    mail to: recipient, subject: "You've been invited!", cc: @guest_invite.event.host.email
   end
 
   def new_event_notification(event)
