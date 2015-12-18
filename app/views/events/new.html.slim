@@ -21,7 +21,8 @@
         .input-group.date
           = f.text_field :event_date, class: "form-control", id: "event_date_picker", required: true, placeholder: "Event date"
           span.input-group-addon
-            span.glyphicon.glyphicon-calendar
+            .event-date-icon
+              span.glyphicon.glyphicon-calendar
 
     .form-group
       = f.label "Time", class: "col-sm-2 control-label"
@@ -29,7 +30,8 @@
         .input-group.date
           = f.text_field :event_time, class: "form-control", id: "event_time_picker", required: true, placeholder: "Event time"
           span.input-group-addon
-            span.glyphicon.glyphicon-time
+            .event-time-icon
+              span.glyphicon.glyphicon-time
 
     .form-group
       = f.label :place, class: "col-sm-2 control-label"
