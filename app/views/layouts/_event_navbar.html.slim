@@ -13,9 +13,9 @@ nav.navbar.navbar-default.navbar-fixed-top
 
       ul.nav.navbar-nav
         li class="#{controller_name.include?("event") ? "active" : nil}"
-          = link_to "Hosted events", events_url
+          = link_to "My events", events_url
         li class="#{controller_name.include?("score") ? "active" : nil}"
-          = link_to "Scores", scores_url
+          = link_to "Virtual Tasting Room", scores_url
 
       - if current_guest
         ul.nav.navbar-nav.navbar-right

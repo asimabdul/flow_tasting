@@ -1,15 +1,20 @@
-p Hi
+p Hi #{@user.first_name.try(:titleize)}
 
 p 
-  | Thank you for purchasing 
-  strong #{@tasting_package.name}.
+  | Thanks for purchasing the
+  strong  #{@tasting_package.name} 
+  |  Flow Tasting.
+
+
+p You can use the FlowTasting app to schedule your event, invite your guests, and run your tasting in real time.
+
+p During the event, confirmed guests gain access to a private Virtual Tasting Room via their mobile devices.  Everyone rates the wines and, as the host, you see the results as they come in. When everyone’s ready, you can generate a Group Scorecard to reveal the winners and losers.
 
 p 
-  | You may 
+  | Click here to 
   | #{link_to "create", new_event_url(tasting_package_id: @tasting_package.id, host_user_id: @user.id)}
-  |  your event at this time.
+  |  your event.
+
+p Cheers,
   
-
-p Thanks,
-
-p Flow Tasting team
+p Flow Tasting

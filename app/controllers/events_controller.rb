@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @tasting_package_id = params[:tasting_package_id]
+    @tasting_package = TastingPackage.find(@tasting_package_id)
     @host_user_id = params[:host_user_id]
   end
 
@@ -15,6 +16,7 @@ class EventsController < ApplicationController
   def create
     event = Event.create(event_params)
     Guest.process_invites(params[:invite_emails].split(", "), event) if event
+    flash[:success] = "Thank you! Your FlowTasting event has been created, and your guests have been invited. We sent you an email with your Event key. Use it to manage your event and run the Virtual Tasting Room during your tasting."
     redirect_to event_url(event.id)
   end
 
@@ -50,7 +52,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.update_attributes(event_params)
     Guest.process_invites(params[:invite_emails].split(", "), event) if params[:invite_emails].present?
-    flash[:success] = "The event has been updated"
+    flash[:success] = "Your FlowTasting event has been updated."
     redirect_to event_url(params[:id])
   end
 

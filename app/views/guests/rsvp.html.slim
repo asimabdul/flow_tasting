@@ -3,65 +3,51 @@
 
 .container
   - if @guest_invite
-    .row
-      .col-sm-10
-        span 
-          | You've been invited to 
-          strong #{@guest_invite.event.name}
-          |. The event details are provided below.
-    
     .row.top-10
-      .col-sm-1
-        strong Name
-      .col-sm-10
+      .col-xs-5.col-sm-2
+        strong FlowTasting Event
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.name}
     .row.top-5
-      .col-sm-1
+      .col-xs-5.col-sm-2
         strong Event key
-      .col-sm-10
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.event_key}
     .row.top-5
-      .col-sm-1
+      .col-xs-5.col-sm-2
         strong Description
-      .col-sm-10
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.description}
     .row.top-5
-      .col-sm-1
+      .col-xs-5.col-sm-2
         strong Date
-      .col-sm-10
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.parse_event_date}
     .row.top-5
-      .col-sm-1
-        strong Date
-      .col-sm-10
+      .col-xs-5.col-sm-2
+        strong Time
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.parse_event_time}
     .row.top-5
-      .col-sm-1
+      .col-xs-5.col-sm-2
         strong Place
-      .col-sm-10
+      .col-sm-4.col.xs-7
         span #{@guest_invite.event.venue}
 
-    .top-15
-      = form_tag(guests_update_url, method: :put, html: {class: "form-horizontal"}) do
-        = hidden_field_tag :invite_key, params[:invite_key]
-        .form-group
-          = label_tag "Please register/change your RSVP."
-          .radio
-            label
-              = radio_button_tag "rsvp_choice", :going, @guest_invite.rsvp_state == "going"
-              | Going
-          .radio
-            label
-              = radio_button_tag "rsvp_choice", :not_going, @guest_invite.rsvp_state == "not_going"
-              | Not going
-          .radio
-            label
-              = radio_button_tag "rsvp_choice", :maybe, @guest_invite.rsvp_state == "maybe"
-              | Maybe
-        .form-group
-          = submit_tag "RSVP", class: "btn btn-default"
+    .row.top-15
+      .col-xs-5.col-sm-5
+        strong Joining the event?
+    .row.top-10
+      .col-xs-10.col-sm-10
+        span
+          = link_to guests_update_url(invite_key: params[:invite_key], rsvp_choice: :going), method: :put, class: "btn btn-default" do
+            | Yes
+        span.left-15
+          = link_to guests_update_url(invite_key: params[:invite_key], rsvp_choice: :not_going), method: :put, class: "btn btn-default" do
+            | No
+            
   - else
     .row
       .col-sm-10
-        span It looks like your invite has been revoked. Please check with the event's host.
+        span It looks like you haven't been invited to this event. Please check with the event's host.
 

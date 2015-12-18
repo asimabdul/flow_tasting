@@ -39,6 +39,19 @@ class Guest < ActiveRecord::Base
     ApplicationMailer.remind_guest(self).deliver_later
   end
 
+  def format_rsvp_state
+    case self[:rsvp_state]
+    when "going"
+      return "Yes"
+    when "not_going"
+      return "No"
+    when "maybe"
+      return "No answer"
+    else
+      return ""
+    end
+  end
+
   private
   def send_email_notification
     ApplicationMailer.invite_notification(self).deliver_later
