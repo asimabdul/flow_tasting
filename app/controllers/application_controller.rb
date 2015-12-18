@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
 
   def require_guest
     if current_guest.nil?
-      flash[:error] = "Please login with your email and event key to proceed. We sent you an email containing this information."
+      if !flash[:success].present?
+        flash[:error] = "Please login with your email and event key to proceed. We sent you an email containing this information."  
+      end
       redirect_to new_events_session_url 
     end
   end
