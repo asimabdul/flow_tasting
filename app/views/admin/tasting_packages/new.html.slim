@@ -11,7 +11,7 @@
   .form-group
     = f.label :price, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :price, class: "form-control", required: true
+      = f.number_field :price, class: "form-control", required: true, step: "any"
 
   #package-wine-fields.form-group
     = label_tag "Add Wines", nil, class: "col-sm-2 control-label"
