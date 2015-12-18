@@ -8,6 +8,8 @@ p <i>#{@guest_invite.event.description}</i>
 
 p Click #{link_to("here", register_rsvp_url(@guest_invite.invite_key))} to RSVP.
 
+p Please use your email ID and event key #{@guest_invite.event.try(:event_keu)} to log in for the event.
+
 p Thanks,
 
 p Flow Tasting team
