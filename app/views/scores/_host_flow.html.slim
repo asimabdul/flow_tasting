@@ -37,12 +37,14 @@
                   th Attributes
                   - @guest_scorecards.each do |guest_scorecard|
                     th #{guest_scorecard.user.email}
+                  th #{current_event.host.email}
               tbody
                 - %w[body sweetness acidity finish rank].each do |attribute, index|
                   tr
                     td #{attribute.titleize}
                     - @guest_scorecards.each_with_index do |guest_scorecard|
                       td #{score_for(current_event.id, wine.id, guest_scorecard.user.id).try(attribute.to_sym) || 0}
+                    td #{score_for(current_event.id, wine.id, current_event.host.id).try(attribute.to_sym) || 0}
 
   - if current_event.started? && !current_event.completed?
     .row.top-15
