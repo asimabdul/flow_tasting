@@ -5,47 +5,47 @@
 
   .package-details
     .row.top-5
-      .col-sm-2.col-sm-offset-2
-        strong Name
-      .col-sm-6
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
+        strong Name 
+      .col-sm-4.col.xs-7
         span #{@event.name}
 
     .row.top-5
-      .col-sm-2.col-sm-offset-2
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
         strong Event key
-      .col-sm-6
+      .col-sm-4.col.xs-7
         span #{@event.event_key}
 
     .row.top-5
-      .col-sm-2.col-sm-offset-2
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
         strong Description
-      .col-sm-6
+      .col-sm-4.col.xs-7
         span #{@event.description}
 
     .row.top-5
-      .col-sm-2.col-sm-offset-2
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
         strong Date
-      .col-sm-6
+      .col-sm-4.col.xs-7
         span #{@event.parse_event_date}
 
     .row.top-5
-      .col-sm-2.col-sm-offset-2
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
         strong Time
-      .col-sm-6
+      .col-sm-4.col.xs-7
         span #{@event.parse_event_time}
 
     .row.top-5
-      .col-sm-2.col-sm-offset-2
+      .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
         strong Place
-      .col-sm-6
+      .col-sm-4.col.xs-7
         span #{@event.venue}
 
     - if !@event.guests.empty?
       .row.top-5
-        .col-sm-2.col-sm-offset-2
+        .col-xs-5.col-sm-2.col-sm-offset-2.col-xs-offset-2
           strong Guests
       .row.top-10
-        .col-sm-offset-2.col-sm-6
+        .col-sm-offset-2.col-sm-6.col-xs-8.col-xs-offset-2
           table.table
             thead
               tr
