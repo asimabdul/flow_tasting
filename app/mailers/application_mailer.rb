@@ -25,6 +25,7 @@ class ApplicationMailer < ActionMailer::Base
 
   def remind_guest(guest)
     @guest = guest
+    @event = guest.event
     recipient = @guest.user.email
     mail to: recipient, subject: "This is a reminder for your event!", from: @guest.event.host.email
   end

@@ -1,5 +1,11 @@
-p Hi
+p Hi #{@guest.user.first_name}
 
-p This is a reminder.
+p This is a reminder for your FlowTasting Event.
 
-p Thanks.
+p #{@event.name.try(:titleize)}
+p #{@event.parse_event_date}, #{@event.parse_event_time}
+p #{@event.venue.try(:titleize)}
+
+p Thanks,
+
+p #{@event.host.email}
