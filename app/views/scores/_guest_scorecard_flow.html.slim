@@ -86,10 +86,9 @@
                   = link_to "#" do
                     i.fa.fa-info-circle
                 strong.rating-value-holder Rank
-                - puts "\n scorecard rank #{scorecard_rank}"
                 span.rating-value-holder - #{scorecard_rank}
               .col-sm-4.col-xs-7
-                = f.text_field :rank, "data-rating-attr" => "rank", "data-slider-min" => "1", "data-slider-max" => "6", "data-slider-step" => "1", "data-slider-value" => "#{scorecard_rank}", "data-slider-reversed" => "true", class: "rating-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
+                = f.text_field :rank, "data-rating-attr" => "rank", "data-slider-min" => "1", "data-slider-max" => "6", "data-slider-step" => "1", "data-slider-value" => "#{scorecard_rank}", "data-slider-reversed" => "true", class: "rating-slider rank-slider", "data-slider-enabled" => "#{current_event.completed? ? "false" : "true"}"
 
             .row.top-20
               .col-xs-5.col-sm-2

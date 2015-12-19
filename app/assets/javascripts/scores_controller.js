@@ -25,6 +25,19 @@ function ready() {
     sliderValueHolder.text(" - " + translateSliderValue(sliderElement.data("rating-attr"), e.value || sliderElement.data("slider-value")));
   })
 
+  $(".rank-slider").on("change", function(e) {
+
+    var sameRankSliders = $(".rank-slider").not(this).filter(function() {
+      var currentSliderVal = $(this).data("slider").getValue();
+      return currentSliderVal == e.value.newValue;
+    });
+    
+    if (sameRankSliders.length > 0) {
+      $(e.target).data("slider").setValue(e.value.oldValue);
+    }
+
+  })
+
   $(".rating-slider").trigger("slide");
 
 }
