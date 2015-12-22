@@ -7,7 +7,7 @@ class ApplicationMailer < ActionMailer::Base
     @event = @guest_invite.event
     recipient = @guest_invite.user.email
     host_email = @guest_invite.event.host.email
-    mail to: recipient, subject: "You’ve been invited to a FlowTasting!", cc: host_email, from: host_email
+    mail to: recipient, subject: "You’ve been invited to a FlowTasting!", cc: host_email, reply_to: host_email
   end
 
   def new_event_notification(event)
@@ -27,7 +27,7 @@ class ApplicationMailer < ActionMailer::Base
     @guest = guest
     @event = guest.event
     recipient = @guest.user.email
-    mail to: recipient, subject: "This is a reminder for your event!", from: @guest.event.host.email
+    mail to: recipient, subject: "This is a reminder for your event!", reply_to: @guest.event.host.email
   end
 
 end
