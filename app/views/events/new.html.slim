@@ -1,5 +1,5 @@
 .custom-page-header
-  h4 Create event
+  h4 Create your FlowTasting event
 - if @tasting_package_id.nil? || @host_user_id.nil?
   strong Required parameters are missing. Event cannot be created.
 - else
@@ -36,7 +36,7 @@
     .form-group
       = f.label :place, class: "col-sm-2 control-label"
       .col-sm-10
-        = f.text_field :venue, class: "form-control "
+        = f.text_field :venue, class: "form-control", required: true
 
     .form-group
       = label_tag :invite_guests, "Invite guests", class: "col-sm-2 control-label"

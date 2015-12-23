@@ -1,15 +1,15 @@
-p Hi
+p Hi #{@event.host.try(:first_name).try(:titleize)}
 
 p 
-  | The event  
+  | Your FlowTasting event: 
   strong #{@event.name}
   |  has been created.
 
 p 
-  | You may use your email and event key 
+  | Use your email and event key 
   strong #{@event.event_key} 
   | to #{link_to "access your event", new_events_session_url}.
 
-p Thanks,
+p Cheers,
 
-p Flow Tasting team
+p FlowTasting

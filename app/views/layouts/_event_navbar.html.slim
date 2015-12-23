@@ -16,6 +16,8 @@ nav.navbar.navbar-default.navbar-fixed-top
           = link_to "My events", events_url
         li class="#{controller_name.include?("score") ? "active" : nil}"
           = link_to "Virtual Tasting Room", scores_url
+        li
+          a href="mailto:support@flowtasting.com" Support
 
       - if current_guest
         ul.nav.navbar-nav.navbar-right

@@ -1,5 +1,5 @@
 .custom-page-header
-  h4 Edit event
+  h4 Edit your FlowTasting event
 
 = form_for(@event, url: event_url(@event.id), method: :put, html: {class: "form-horizontal"}) do |f|
   
@@ -35,7 +35,7 @@
   .form-group
     = f.label :place, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :venue, class: "form-control"
+      = f.text_field :venue, class: "form-control", required: true
 
   .form-group
     = label_tag :invite_guests, "Invite guests", class: "col-sm-2 control-label"
